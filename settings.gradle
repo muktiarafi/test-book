@@ -1,0 +1,6 @@
+rootProject.name = 'book'
+
+include 'book-proto'
+include 'book-server'
+include 'book-server:book-grpc'
+include 'book-grpc'

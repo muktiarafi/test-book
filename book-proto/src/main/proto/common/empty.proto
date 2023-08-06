@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package dev.mukti.grpc.book;
+
+option java_multiple_files = true;
+option java_package = "dev.mukti.grpc.common.lib";
+
+message Empty {
+}

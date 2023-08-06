@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package dev.mukti.grpc.book;
+
+option java_multiple_files = true;
+option java_package = "dev.mukti.grpc.book.lib";
+
+import "common/empty.proto";
+
+message CreateBookRequest {
+  string title = 1;
+  string author = 2;
+  string description = 3;
+  repeated string genres = 4;
+}
+
+message FindBookByRequest {
+  string title = 1;
+  string author = 2;
+  repeated string genres = 3;
+}
+
+message BookResponse {
+  int64 id = 1;
+  string title = 2;
+  string author = 3;
+  string description = 4;
+  repeated string genres = 5;
+  string created_at = 6;
+  string updated_at = 7;
+}
+
+service BookService {
+  rpc save (CreateBookRequest) returns (BookResponse) {
+  }
+
+  rpc findBook (FindBookByRequest) returns (stream BookResponse) {
+  }
+
+  rpc showAllBook (Empty) returns (stream BookResponse) {
+  }
+}

@@ -1,19 +1,21 @@
 package dev.mukti.book.server.grpc;
 
-import dev.mukti.book.server.entity.Book;
-import dev.mukti.book.server.service.BookService;
+import dev.mukti.base.entity.Book;
+import dev.mukti.base.service.BookService;
 import dev.mukti.grpc.book.lib.BookResponse;
 import dev.mukti.grpc.book.lib.BookServiceGrpc;
 import dev.mukti.grpc.book.lib.CreateBookRequest;
 import dev.mukti.grpc.book.lib.FindBookByRequest;
-import dev.mukti.grpc.common.lib.Empty;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
 import org.lognet.springboot.grpc.GRpcService;
 
+import java.time.format.DateTimeFormatter;
+
 @GRpcService
 @AllArgsConstructor
 public class BookGrpcServiceImpl extends BookServiceGrpc.BookServiceImplBase {
+
     private final BookService bookService;
 
     @Override
@@ -28,14 +30,6 @@ public class BookGrpcServiceImpl extends BookServiceGrpc.BookServiceImplBase {
     public void findBook(FindBookByRequest request, StreamObserver<BookResponse> responseObserver) {
         bookService.findBook(request).forEach(book -> responseObserver.onNext(buildBookResponse(book)));
 
-        responseObserver.onNext(BookResponse.newBuilder().build());
-        responseObserver.onCompleted();
-    }
-
-    @Override
-    public void showAllBook(Empty request, StreamObserver<BookResponse> responseObserver) {
-        bookService.showAllBook().forEach(book -> responseObserver.onNext(buildBookResponse(book)));
-
         responseObserver.onCompleted();
     }
 
@@ -46,8 +40,8 @@ public class BookGrpcServiceImpl extends BookServiceGrpc.BookServiceImplBase {
                 .setAuthor(book.author())
                 .setDescription(book.description())
                 .addAllGenres(book.genres())
-                .setCreatedAt(book.createdAt().toString())
-                .setUpdatedAt(book.updatedAt().toString())
+                .setCreatedAt(book.createdAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")))
+                .setUpdatedAt(book.updatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")))
                 .build();
     }
 }

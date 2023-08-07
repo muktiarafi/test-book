@@ -77,37 +77,6 @@ public final class BookServiceGrpc {
     return getFindBookMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<dev.mukti.grpc.common.lib.Empty,
-      dev.mukti.grpc.book.lib.BookResponse> getShowAllBookMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "showAllBook",
-      requestType = dev.mukti.grpc.common.lib.Empty.class,
-      responseType = dev.mukti.grpc.book.lib.BookResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<dev.mukti.grpc.common.lib.Empty,
-      dev.mukti.grpc.book.lib.BookResponse> getShowAllBookMethod() {
-    io.grpc.MethodDescriptor<dev.mukti.grpc.common.lib.Empty, dev.mukti.grpc.book.lib.BookResponse> getShowAllBookMethod;
-    if ((getShowAllBookMethod = BookServiceGrpc.getShowAllBookMethod) == null) {
-      synchronized (BookServiceGrpc.class) {
-        if ((getShowAllBookMethod = BookServiceGrpc.getShowAllBookMethod) == null) {
-          BookServiceGrpc.getShowAllBookMethod = getShowAllBookMethod =
-              io.grpc.MethodDescriptor.<dev.mukti.grpc.common.lib.Empty, dev.mukti.grpc.book.lib.BookResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "showAllBook"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  dev.mukti.grpc.common.lib.Empty.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  dev.mukti.grpc.book.lib.BookResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new BookServiceMethodDescriptorSupplier("showAllBook"))
-              .build();
-        }
-      }
-    }
-    return getShowAllBookMethod;
-  }
-
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -170,13 +139,6 @@ public final class BookServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getFindBookMethod(), responseObserver);
     }
 
-    /**
-     */
-    public void showAllBook(dev.mukti.grpc.common.lib.Empty request,
-        io.grpc.stub.StreamObserver<dev.mukti.grpc.book.lib.BookResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getShowAllBookMethod(), responseObserver);
-    }
-
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -193,13 +155,6 @@ public final class BookServiceGrpc {
                 dev.mukti.grpc.book.lib.FindBookByRequest,
                 dev.mukti.grpc.book.lib.BookResponse>(
                   this, METHODID_FIND_BOOK)))
-          .addMethod(
-            getShowAllBookMethod(),
-            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
-              new MethodHandlers<
-                dev.mukti.grpc.common.lib.Empty,
-                dev.mukti.grpc.book.lib.BookResponse>(
-                  this, METHODID_SHOW_ALL_BOOK)))
           .build();
     }
   }
@@ -233,14 +188,6 @@ public final class BookServiceGrpc {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getFindBookMethod(), getCallOptions()), request, responseObserver);
     }
-
-    /**
-     */
-    public void showAllBook(dev.mukti.grpc.common.lib.Empty request,
-        io.grpc.stub.StreamObserver<dev.mukti.grpc.book.lib.BookResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
-          getChannel().newCall(getShowAllBookMethod(), getCallOptions()), request, responseObserver);
-    }
   }
 
   /**
@@ -271,14 +218,6 @@ public final class BookServiceGrpc {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getFindBookMethod(), getCallOptions(), request);
     }
-
-    /**
-     */
-    public java.util.Iterator<dev.mukti.grpc.book.lib.BookResponse> showAllBook(
-        dev.mukti.grpc.common.lib.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
-          getChannel(), getShowAllBookMethod(), getCallOptions(), request);
-    }
   }
 
   /**
@@ -306,7 +245,6 @@ public final class BookServiceGrpc {
 
   private static final int METHODID_SAVE = 0;
   private static final int METHODID_FIND_BOOK = 1;
-  private static final int METHODID_SHOW_ALL_BOOK = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -331,10 +269,6 @@ public final class BookServiceGrpc {
           break;
         case METHODID_FIND_BOOK:
           serviceImpl.findBook((dev.mukti.grpc.book.lib.FindBookByRequest) request,
-              (io.grpc.stub.StreamObserver<dev.mukti.grpc.book.lib.BookResponse>) responseObserver);
-          break;
-        case METHODID_SHOW_ALL_BOOK:
-          serviceImpl.showAllBook((dev.mukti.grpc.common.lib.Empty) request,
               (io.grpc.stub.StreamObserver<dev.mukti.grpc.book.lib.BookResponse>) responseObserver);
           break;
         default:
@@ -400,7 +334,6 @@ public final class BookServiceGrpc {
               .setSchemaDescriptor(new BookServiceFileDescriptorSupplier())
               .addMethod(getSaveMethod())
               .addMethod(getFindBookMethod())
-              .addMethod(getShowAllBookMethod())
               .build();
         }
       }

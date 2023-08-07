@@ -1,4 +1,4 @@
-package dev.mukti.book.server.entity;
+package dev.mukti.base.entity;
 
 import java.time.OffsetDateTime;
 import java.util.List;

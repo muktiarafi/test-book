@@ -1,8 +1,8 @@
 package dev.mukti.book.server.service.impl;
 
-import dev.mukti.book.server.entity.Book;
-import dev.mukti.book.server.repository.BookRepository;
-import dev.mukti.book.server.service.BookService;
+import dev.mukti.base.entity.Book;
+import dev.mukti.base.repository.BookRepository;
+import dev.mukti.base.service.BookService;
 import dev.mukti.grpc.book.lib.CreateBookRequest;
 import dev.mukti.grpc.book.lib.FindBookByRequest;
 import lombok.AllArgsConstructor;
@@ -25,10 +25,5 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findBook(FindBookByRequest findBookByRequest) {
         return bookRepository.findBook(findBookByRequest);
-    }
-
-    @Override
-    public List<Book> showAllBook() {
-        return bookRepository.showAllBook();
     }
 }

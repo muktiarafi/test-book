@@ -1,13 +1,12 @@
-package dev.mukti.book.server.repository;
+package dev.mukti.base.service;
 
-import dev.mukti.book.server.entity.Book;
+import dev.mukti.base.entity.Book;
 import dev.mukti.grpc.book.lib.CreateBookRequest;
 import dev.mukti.grpc.book.lib.FindBookByRequest;
 
 import java.util.List;
 
-public interface BookRepository {
+public interface BookService {
     Book save(CreateBookRequest createBookRequest);
     List<Book> findBook(FindBookByRequest findBookByRequest);
-    List<Book> showAllBook();
 }

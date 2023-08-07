@@ -46,15 +46,13 @@ public final class Book {
       "\016\n\006genres\030\003 \003(\t\"\206\001\n\014BookResponse\022\n\n\002id\030\001" +
       " \001(\003\022\r\n\005title\030\002 \001(\t\022\016\n\006author\030\003 \001(\t\022\023\n\013d" +
       "escription\030\004 \001(\t\022\016\n\006genres\030\005 \003(\t\022\022\n\ncrea" +
-      "ted_at\030\006 \001(\t\022\022\n\nupdated_at\030\007 \001(\t2\217\002\n\013Boo" +
+      "ted_at\030\006 \001(\t\022\022\n\nupdated_at\030\007 \001(\t2\275\001\n\013Boo" +
       "kService\022S\n\004save\022&.dev.mukti.grpc.book.C" +
       "reateBookRequest\032!.dev.mukti.grpc.book.B" +
       "ookResponse\"\000\022Y\n\010findBook\022&.dev.mukti.gr" +
       "pc.book.FindBookByRequest\032!.dev.mukti.gr" +
-      "pc.book.BookResponse\"\0000\001\022P\n\013showAllBook\022" +
-      "\032.dev.mukti.grpc.book.Empty\032!.dev.mukti." +
-      "grpc.book.BookResponse\"\0000\001B\033\n\027dev.mukti." +
-      "grpc.book.libP\001b\006proto3"
+      "pc.book.BookResponse\"\0000\001B\033\n\027dev.mukti.gr" +
+      "pc.book.libP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

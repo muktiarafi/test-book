@@ -5,10 +5,14 @@ plugins {
 }
 
 group = 'dev.mukti'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 
 java {
 	sourceCompatibility = '17'
+}
+
+ext {
+	grpcVersion = '1.43.2'
 }
 
 configurations {
@@ -22,11 +26,11 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	implementation 'org.jooq:jooq:3.18.5'
-	implementation 'org.apache.commons:commons-lang3:3.13.0'
-	implementation 'org.postgresql:postgresql'
-	implementation 'io.github.lognet:grpc-spring-boot-starter:5.1.4'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+	implementation "io.grpc:grpc-stub:${grpcVersion}"
+	implementation "io.grpc:grpc-netty:${grpcVersion}"
 
 	implementation project(':book-proto')
 	implementation project(':book-base')

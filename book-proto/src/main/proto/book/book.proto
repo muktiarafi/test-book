@@ -36,7 +36,4 @@ service BookService {
 
   rpc findBook (FindBookByRequest) returns (stream BookResponse) {
   }
-
-  rpc showAllBook (Empty) returns (stream BookResponse) {
-  }
 }

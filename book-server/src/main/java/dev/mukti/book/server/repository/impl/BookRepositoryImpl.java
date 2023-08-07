@@ -1,7 +1,7 @@
 package dev.mukti.book.server.repository.impl;
 
-import dev.mukti.book.server.entity.Book;
-import dev.mukti.book.server.repository.BookRepository;
+import dev.mukti.base.entity.Book;
+import dev.mukti.base.repository.BookRepository;
 import dev.mukti.grpc.book.lib.CreateBookRequest;
 import dev.mukti.grpc.book.lib.FindBookByRequest;
 import lombok.AllArgsConstructor;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
 import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -90,23 +91,8 @@ public class BookRepositoryImpl implements BookRepository {
                 COALESCE(ARRAY((SELECT genre FROM genres WHERE book_id = b.id)), '{}'::text[]) AS genres,
                 created_at, updated_at
                 FROM books AS b
-                WHERE 
+                WHERE
                 """ + condition;
-
-        return jdbcTemplate.query(
-                sql,
-                bookRowMapper()
-        );
-    }
-
-    @Override
-    public List<Book> showAllBook() {
-        var sql = """
-                SELECT id, title, author, description,
-                COALESCE(ARRAY((SELECT genre FROM genres WHERE book_id = b.id)), '{}'::text[]) AS genres,
-                created_at, updated_at
-                FROM books AS b
-                """;
 
         return jdbcTemplate.query(
                 sql,

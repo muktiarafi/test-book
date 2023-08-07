@@ -1,5 +1,29 @@
 version: '3'
 services:
+  book-server:
+    build:
+      context: .
+      args:
+        MODULE: book-server
+    ports:
+      - '6565:6565'
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://db/book?user=user&password=password&ssl=false'
+    depends_on:
+      db:
+        condition: service_healthy
+
+  book-client:
+    build:
+      context: .
+      args:
+        MODULE: book-client
+    ports:
+      - '8080:8080'
+    environment:
+      GRPC_BOOK_SERVICE_HOST: book-server
+      GRPC_BOOK_SERVICE_PORT: 6565
+
   db:
     image: postgres:alpine
     ports:
@@ -8,3 +32,8 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: book
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5

@@ -86,8 +86,8 @@ public class BookRepositoryImpl implements BookRepository {
         }
 
         var sql = """
-                SELECT id, title, author, description, 
-                COALESCE(ARRAY((SELECT genre FROM genres WHERE book_id = b.id)), '{}'::text[]) AS genres, 
+                SELECT id, title, author, description,
+                COALESCE(ARRAY((SELECT genre FROM genres WHERE book_id = b.id)), '{}'::text[]) AS genres,
                 created_at, updated_at
                 FROM books AS b
                 WHERE 
@@ -102,8 +102,8 @@ public class BookRepositoryImpl implements BookRepository {
     @Override
     public List<Book> showAllBook() {
         var sql = """
-                SELECT id, title, author, description, 
-                COALESCE(ARRAY((SELECT genre FROM genres WHERE book_id = b.id)), '{}'::text[]) AS genres, 
+                SELECT id, title, author, description,
+                COALESCE(ARRAY((SELECT genre FROM genres WHERE book_id = b.id)), '{}'::text[]) AS genres,
                 created_at, updated_at
                 FROM books AS b
                 """;

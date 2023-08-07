@@ -9,9 +9,9 @@ import dev.mukti.grpc.book.lib.FindBookByRequest;
 import dev.mukti.grpc.common.lib.Empty;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
-import net.devh.boot.grpc.server.service.GrpcService;
+import org.lognet.springboot.grpc.GRpcService;
 
-@GrpcService
+@GRpcService
 @AllArgsConstructor
 public class BookGrpcServiceImpl extends BookServiceGrpc.BookServiceImplBase {
     private final BookService bookService;
